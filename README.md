@@ -16,11 +16,11 @@ This repository collect all cloud functions, that should be deployed to Firebase
             },
             "emulators": {
                 "ui": {
-                "enabled": true,
-                "port": 4000
+                    "enabled": true,
+                    "port": 4000
                 },
-                "auth": {
-                "port": "9099"
+                    "auth": {
+                    "port": "9099"
                 }
             }
         }
