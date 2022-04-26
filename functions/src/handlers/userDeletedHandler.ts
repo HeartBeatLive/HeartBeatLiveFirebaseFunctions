@@ -1,0 +1,16 @@
+import { auth, logger } from "firebase-functions";
+import { UserRecord } from "firebase-admin/lib/auth/user-record";
+import graphqlRequest from "../utils/graphqlClient";
+
+const deleteUserQuery = `
+    mutation DeleteUser($userId: String!) {
+        firebaseDeleteUser(userId: $userId)
+    }
+`;
+
+const userDeletedHandler = auth.user().onDelete((user: UserRecord) => {
+    logger.info(`Sending info to server, that user ${user.displayName || '<no_name>'} [${user.uid}] was deleted.`)
+    return graphqlRequest(deleteUserQuery, { userId: user.uid });
+});
+
+export default userDeletedHandler;
