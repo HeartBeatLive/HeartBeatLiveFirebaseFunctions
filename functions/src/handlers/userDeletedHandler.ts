@@ -8,7 +8,7 @@ const deleteUserQuery = `
     }
 `;
 
-const userDeletedHandler = auth.user().onDelete((user: UserRecord) => {
+const userDeletedHandler = auth.user().onDelete(async (user: UserRecord) => {
     logger.info(`Sending info to server, that user ${user.displayName || '<no_name>'} [${user.uid}] was deleted.`)
     return graphqlRequest(deleteUserQuery, { userId: user.uid });
 });

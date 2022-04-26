@@ -8,7 +8,7 @@ const registerUserQuery = `
     }
 `;
 
-const userCreatedHandler = auth.user().onCreate((user: UserRecord) => {
+const userCreatedHandler = auth.user().onCreate(async (user: UserRecord) => {
     logger.info(`Sending info to server about registered user with id '${user.uid}'`);
     const userInput = {
         id: user.uid,
