@@ -3,7 +3,7 @@ import { UserRecord } from "firebase-admin/lib/auth/user-record";
 import graphqlRequest from "../utils/graphqlClient";
 
 const registerUserQuery = `
-    mutation CreateUser($user: FirebaseCreateUserRequest) {
+    mutation CreateUser($user: FirebaseCreateUserRequest!) {
         firebaseCreateUser(request: $user)
     }
 `;
