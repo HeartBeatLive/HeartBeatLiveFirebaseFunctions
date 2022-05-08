@@ -3,7 +3,7 @@ import { UserRecord } from "firebase-admin/lib/auth/user-record";
 import graphqlRequest from "../utils/graphqlClient";
 
 const deleteUserQuery = `
-    mutation DeleteUser($userId: String!) {
+    mutation DeleteUser($userId: ID!) {
         firebaseDeleteUser(userId: $userId)
     }
 `;
