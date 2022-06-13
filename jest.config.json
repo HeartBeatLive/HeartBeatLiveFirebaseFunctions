@@ -1,0 +1,16 @@
+{
+    "clearMocks": true,
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "testMatch": [
+        "**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts}",
+        "!src/**/__tests__/**"
+    ],
+    "setupFiles": [
+        "<rootDir>/src/__tests__/setup.ts"
+    ],
+    "reporters": ["summary"]
+}

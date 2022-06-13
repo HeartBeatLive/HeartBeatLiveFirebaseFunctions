@@ -1,5 +1,5 @@
 import { auth, logger } from "firebase-functions";
-import { UserRecord } from "firebase-admin/lib/auth/user-record";
+import { UserRecord } from "firebase-functions/v1/auth";
 import graphqlRequest from "../utils/graphqlClient";
 
 const registerUserQuery = `
