@@ -8,27 +8,10 @@ This repository collect all cloud functions, that should be deployed to Firebase
 ## Set up
 - Set up environment properties. Use `/functions/.env` file for configuring them localy or Firebase Console for configurating them on Firebase server. See [Configuration properties](#configuration-properties) to understand how you should configure your properties.
 - For running in emulator:
-    1. Create `.firebaserc` file in root folder. Here an example content:
-        ```json
-        {
-            "projects": {
-                "default": "heartbeat-c8956"
-            },
-            "emulators": {
-                "ui": {
-                    "enabled": true,
-                    "port": 4000
-                },
-                    "auth": {
-                    "port": "9099"
-                }
-            }
-        }
-        ```
-    2. Run `npm -prefix functions run build` command in project folder.
-    3. Run `firebase emulators:start` command in project folder to start firebase emulator (you need to download it previously, check Firebase documentation).
+    1. Build sources using `npm run build` command.
+    2. Run emulator using `firebase emulators:start --only auth,functions --project "$PROJECT_ID"` command.
 - For deploying to the Firebase servers:
-    1. Run `firebase deploy --only functions` in project folder.
+    1. Run `npm run deploy` in project folder.
 
 ## Configuration properties
 ### `GRAPHQL_ENDPOINT`
