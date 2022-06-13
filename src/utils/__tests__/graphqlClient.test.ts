@@ -1,10 +1,10 @@
 import graphqlClient from "../graphqlClient";
-import fetch, { RequestInit } from 'node-fetch';
+import fetch, { RequestInit, Response } from 'node-fetch';
 import { logger } from "firebase-functions";
 import { RequestOptions } from 'http';
 
 jest.mock('node-fetch');
-const mockFetch = fetch as jest.MockedClass<typeof fetch>;
+const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 describe('GraphQL Client', () => {
     const env = process.env;
@@ -15,7 +15,7 @@ describe('GraphQL Client', () => {
     it('should finish successfuly', async () => {
         mockFetch.mockReturnValueOnce(Promise.resolve({
             text: () => Promise.resolve('{}')
-        }));
+        } as Response));
 
         await graphqlClient('query {}', { a: 1, b: 2 });
 
@@ -36,7 +36,7 @@ describe('GraphQL Client', () => {
     it('should log an error', async () => {
         mockFetch.mockReturnValueOnce(Promise.resolve({
             text: () => Promise.resolve('{"errors": [{"a": 1}]}')
-        }));
+        } as Response));
         const mockErrorLogger = jest.spyOn(logger, "error");
 
         await graphqlClient('query {}', { a: 1, b: 2 });
@@ -46,7 +46,7 @@ describe('GraphQL Client', () => {
     it('should use different agent based on schema', async () => {
         mockFetch.mockReturnValue(Promise.resolve({
             text: () => Promise.resolve('{}')
-        }));
+        } as Response));
 
         await graphqlClient('query {}', { a: 1, b: 2 });
         const requestInit = mockFetch.mock.calls[0][1] as RequestInit;

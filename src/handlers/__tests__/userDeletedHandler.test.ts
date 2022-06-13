@@ -1,12 +1,12 @@
 import userDeletedHandler from '../userDeletedHandler';
 import graphqlClient from '../../utils/graphqlClient';
-import firebaseFunctionsTest from 'firebase-functions-test';
+const firebaseFunctionsTest = require('firebase-functions-test');
 import { testUser } from './utils';
 
 const { wrap } = firebaseFunctionsTest();
 
 jest.mock('../../utils/graphqlClient');
-const mockClient = graphqlClient as jest.MockedClass<typeof graphqlClient>;
+const mockClient = graphqlClient as jest.MockedFunction<typeof graphqlClient>;
 
 describe('User Delete Handler', () => {
     it('should send event to server', () => {
